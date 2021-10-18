@@ -1,6 +1,5 @@
 // function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-const {userInfo} = require('os');
 function renderLicenseBadge(license) {
   if (!license) {
     return '';
@@ -31,7 +30,7 @@ function renderLicenseSection(license) {
 }
 
 // function to generate markdown for README
-function generateMarkdown(userResponses, userInfo) {
+function generateMarkdown(data) {
   return `# ${data.title}
 
   ${renderLicenseBadge(data.license)}
@@ -57,14 +56,14 @@ function generateMarkdown(userResponses, userInfo) {
   ${renderLicenseSection(data.license)}
 
   ## Contribution
-  ${data.contibutes}
+  ${data.contributes}
 
   ## Testing
   ${data.tests}
 
   ## Questions
   You can find the link to my application [here](${data.link}).
-  If you have any questions about ${data.title}, contact me at will. 
+  If you have any questions about ${data.projectTitle}, contact me at will. 
 
   ## Contact Info
   - Github: [${data.username}](https://github.com/${data.username})

@@ -10,7 +10,7 @@ const questions = ["What is the title of your project? (required)",
 "What is the name of your GitHub repo? (require)",
 "Please provide a description of this project. (required)",
 'Provide a link to your project. (required)',
-"Please describe how to use this project with instructions and examples. (required)",
+"Please describe how to use this project with instructions and examples.",
 "If applicable, how do you install this application?",
 "If applicable, how can others contribute?",
 "If applicable, provide examples of tests and examples on how to run them.",
@@ -20,10 +20,8 @@ const questions = ["What is the title of your project? (required)",
 
 // function to write README file
 function writeToFile(fileName, data) {
-    fs.writeFile(fileName, data, (err) => {
-        if (err) {
-            throw err;
-        }
+    fs.writeFile(fileName, data, err => {
+        if (err) throw new Error(err);
         console.log('README successfully saved!')
     });
 };
@@ -137,16 +135,26 @@ function init() {
         name: 'tests'
     },
     {
-        name: 'list',
+        type: 'list',
         message: license,
         name: 'license',
-        choices: ['GNU AGPLv3', 'GNU GPLv3', 'GNU LGPLv3', 'Mozilla Public License 2.0', 'Apache License 2.0', 'MIT License', 'Boost Software License 1.0', 'The Unlicense']
+        choices: [
+            "agpl-3.0",
+            "Apache License 2.0",
+            "mit", 
+            "gpl-3.0", 
+            "lgpl-3.0",
+            "mpl-2.0", 
+            "bsl-1.0", 
+            "unlicense"
+    ]
     }
 ])
     .then(data => generateMarkdown(data))
-    .then(pageLayout => writeToFile("README.md", pageLayout))
+    .then(pageLayout => writeToFile('./dist/README.md', pageLayout));
         
 };
     
 // Function call to initialize app
 init();
+    
