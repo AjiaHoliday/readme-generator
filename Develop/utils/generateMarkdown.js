@@ -41,7 +41,34 @@ function generateMarkdown(userResponses, userInfo) {
 
   ## Table of Contents
   * [Description](#description)
-  *[In]
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [License](#license)
+  * [Contribution](#contribution)
+  * [Testing](#testing)
+  * [Link](#link)
+
+  ## Installation
+  ${data.installation}
+
+  ## Usage
+  ${data.usage}
+
+  ${renderLicenseSection(data.license)}
+
+  ## Contribution
+  ${data.contibutes}
+
+  ## Testing
+  ${data.tests}
+
+  ## Questions
+  You can find the link to my application [here](${data.link}).
+  If you have any questions about ${data.title}, contact me at will. 
+
+  ## Contact Info
+  - Github: [${data.username}](https://github.com/${data.username})
+  - Email: ${data.email}
 
 `;
 }

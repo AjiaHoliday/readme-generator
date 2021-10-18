@@ -1,13 +1,12 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-const util = require('util');
-
 const generateMarkdown = require('./utils/generateMarkdown.js');
-const api = require('./utils/api.js');
+
 
 // array of questions for user input
 const questions = ["What is the title of your project? (required)",
 "What is your GitHub username? (required)",
+"What is your email? (required)",
 "What is the name of your GitHub repo? (require)",
 "Please provide a description of this project. (required)",
 'Provide a link to your project. (required)',
@@ -15,23 +14,23 @@ const questions = ["What is the title of your project? (required)",
 "If applicable, how do you install this application?",
 "If applicable, how can others contribute?",
 "If applicable, provide examples of tests and examples on how to run them.",
-"Choose a license for your project.",
+"Choose a license for your project."
 ];
 
 
 // function to write README file
 function writeToFile(fileName, data) {
-    fs.writeFile(fileName, data, err => {
+    fs.writeFile(fileName, data, (err) => {
         if (err) {
             throw err;
         }
         console.log('README successfully saved!')
-    })
+    });
 };
 
 // function to initialize app
 function init() {
-    const [projectTitle, username, repo, description, usage, installation, contributes, tests, license
+    const [projectTitle, username, email, repo, description, link, usage, installation, contributes, tests, license
     ] = questions;
 
     return inquirer.prompt([{   
@@ -58,6 +57,19 @@ function init() {
                 return true;
             } else {
                 console.log('A valid GitHub username is required!');
+                return false;
+            }
+        }
+    },
+    {
+        type: 'input',
+        name: 'email',
+        message: email,
+        validate: emailInput => {
+            if (emailInput) {
+                return true;
+            } else {
+                console.log('A valid email is required!');
                 return false;
             }
         }
