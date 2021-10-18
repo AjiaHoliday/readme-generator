@@ -1,4 +1,4 @@
-# undefined
+# README Generator
 
   ![License](https://img.shields.io/badge/License-unlicense-blue.svg)
 
